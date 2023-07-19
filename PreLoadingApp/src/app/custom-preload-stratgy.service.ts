@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { PreloadingStrategy, Route } from '@angular/router';
 import { Observable, of, timer,mergeMap } from 'rxjs';
-import {map } from 'rxjs/operators';
 @Injectable()
 export class CustomPreloadStratgyService implements PreloadingStrategy {
   preload(route: Route, load: () => Observable<any>): Observable<any> {
@@ -10,7 +9,6 @@ export class CustomPreloadStratgyService implements PreloadingStrategy {
       if (route.data['delay']) {
         console.log("PreLoad Path with delay:" + route.path);
         return timer(6000).pipe(mergeMap(() => load()));
-        //return timer(6000).pipe(map(() => load()));
       }
       else {
         console.log("PreLoad Path:" + route.path);
